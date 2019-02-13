@@ -7,7 +7,18 @@ This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAl
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, changeColor {
+    
+    func changeColorOrange(controller: UIViewController, textColor: UIColor) {
+        elapsedTimeLabel.textColor = textColor
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "edit" {
+            let controller = segue.destination as! EditViewController
+            controller.delegate = self
+        }
+    }
     
     @IBOutlet weak var elapsedTimeLabel: UILabel!
     let stopwatch = Stopwatch()
